@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>甜點銷售紀錄</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fffaf0;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #8B4513;
+      margin: 20px 0 10px;
+    }
+
+    .item {
+      border: 1px solid #FFD1A4;
+      padding: 12px;
+      margin: 10px auto;
+      border-radius: 8px;
+      background-color: #fff0f5;
+      max-width: 500px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    button {
+      background-color: #FF5809;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background-color: #FF8040;
+    }
+
+    .total {
+      margin-top: 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .discount-info {
+      text-align: center;
+      margin-top: 10px;
+      color: #d2691e;
+    }
+
+    .actions {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .button-group {
+        flex-direction: row;
+        justify-content: center;
+      }
+      button {
+        width: auto;
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>甜點銷售紀錄</h1>
+
+  <h2>泡芙系列</h2>
+
+  <div class="item">
+    <h3>原味泡芙（NT$60）</h3>
+    <p>已售出：<span id="vanilla-count">0</span> 個</p>
+    <p>小計：NT$ <span id="vanilla-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('vanilla', 60, 1)">+1</button>
+      <button onclick="changeCount('vanilla', 60, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>巧克力泡芙（NT$65）</h3>
+    <p>已售出：<span id="choco-count">0</span> 個</p>
+    <p>小計：NT$ <span id="choco-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('choco', 65, 1)">+1</button>
+      <button onclick="changeCount('choco', 65, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>莓莓泡芙（NT$65）</h3>
+    <p>已售出：<span id="berry-count">0</span> 個</p>
+    <p>小計：NT$ <span id="berry-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('berry', 65, 1)">+1</button>
+      <button onclick="changeCount('berry', 65, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>百香芒果泡芙（NT$70）</h3>
+    <p>已售出：<span id="mango-count">0</span> 個</p>
+    <p>小計：NT$ <span id="mango-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('mango', 70, 1)">+1</button>
+      <button onclick="changeCount('mango', 70, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>莓果夜微醺泡芙（NT$75）</h3>
+    <p>已售出：<span id="drunkenberry-count">0</span> 個</p>
+    <p>小計：NT$ <span id="drunkenberry-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('drunkenberry', 75, 1)">+1</button>
+      <button onclick="changeCount('drunkenberry', 75, -1)">-1</button>
+    </div>
+  </div>
+
+  <h2>塔塔系列</h2>
+
+  <div class="item">
+    <h3>檸檬塔（NT$65）</h3>
+    <p>已售出：<span id="lemon-count">0</span> 個</p>
+    <p>小計：NT$ <span id="lemon-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('lemon', 65, 1)">+1</button>
+      <button onclick="changeCount('lemon', 65, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>巧克力塔（NT$70）</h3>
+    <p>已售出：<span id="chocotart-count">0</span> 個</p>
+    <p>小計：NT$ <span id="chocotart-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('chocotart', 70, 1)">+1</button>
+      <button onclick="changeCount('chocotart', 70, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>莓莓水果塔（NT$70）</h3>
+    <p>已售出：<span id="berrytart-count">0</span> 個</p>
+    <p>小計：NT$ <span id="berrytart-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('berrytart', 70, 1)">+1</button>
+      <button onclick="changeCount('berrytart', 70, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>水果塔（NT$70）</h3>
+    <p>已售出：<span id="fruit-count">0</span> 個</p>
+    <p>小計：NT$ <span id="fruit-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('fruit', 70, 1)">+1</button>
+      <button onclick="changeCount('fruit', 70, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>千層酥酥（NT$50）</h3>
+    <p>已售出：<span id="crispy-count">0</span> 個</p>
+    <p>小計：NT$ <span id="crispy-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('crispy', 50, 1)">+1</button>
+      <button onclick="changeCount('crispy', 50, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>加購千層酥（NT$40）</h3>
+    <p>已售出：<span id="addoncrispy-count">0</span> 個</p>
+    <p>小計：NT$ <span id="addoncrispy-total">0</span></p>
+    <div class="button-group">
+      <button onclick="changeCount('addoncrispy', 40, 1)">+1</button>
+      <button onclick="changeCount('addoncrispy', 40, -1)">-1</button>
+    </div>
+  </div>
+
+  <div class="total">
+    總銷售金額：NT$ <span id="total-sale">0</span>
+  </div>
+  <div class="discount-info">
+    折扣金額：NT$ <span id="discount-amount">0</span>（已使用 <span id="discount-times">0</span> 次）
+  </div>
+
+  <div class="actions">
+    <button onclick="exportData()">匯出銷售紀錄</button>
+    <button onclick="resetData()">重設資料</button>
+    <button onclick="applyDiscount()">使用折扣（-5）</button>
+  </div>
+
+  <script>
+    const sales = {
+      vanilla: { name: '原味泡芙', count: 0, price: 60 },
+      choco: { name: '巧克力泡芙', count: 0, price: 65 },
+      berry: { name: '莓莓泡芙', count: 0, price: 65 },
+      mango: { name: '百香芒果泡芙', count: 0, price: 70 },
+      drunkenberry: { name: '莓果夜微醺泡芙', count: 0, price: 75 },
+      lemon: { name: '檸檬塔', count: 0, price: 65 },
+      chocotart: { name: '巧克力塔', count: 0, price: 70 },
+      berrytart: { name: '莓莓水果塔', count: 0, price: 70 },
+      fruit: { name: '水果塔', count: 0, price: 70 },
+      crispy: { name: '千層酥酥', count: 0, price: 50 },
+      addoncrispy: { name: '加購千層酥', count: 0, price: 40 }
+    };
+
+    let discount = 0;
+    let discountTimes = 0;
+
+    function saveToStorage() {
+      localStorage.setItem('salesData', JSON.stringify(sales));
+    }
+
+    function loadFromStorage() {
+      const data = localStorage.getItem('salesData');
+      if (data) {
+        const saved = JSON.parse(data);
+        for (let key in saved) {
+          if (sales[key]) {
+            sales[key].count = saved[key].count;
+          }
+        }
+      }
+      updateUI();
+    }
+
+    function changeCount(type, price, delta) {
+      if (!sales[type]) return;
+      sales[type].count = Math.max(0, sales[type].count + delta);
+      saveToStorage();
+      updateUI();
+    }
+
+    function applyDiscount() {
+      discount += 5;
+      discountTimes++;
+      updateUI();
+    }
+
+    function updateUI() {
+      let total = 0;
+      for (let key in sales) {
+        const item = sales[key];
+        document.getElementById(`${key}-count`).textContent = item.count;
+        document.getElementById(`${key}-total`).textContent = item.count * item.price;
+        total += item.count * item.price;
+      }
+      const finalTotal = Math.max(0, total - discount);
+      document.getElementById('total-sale').textContent = finalTotal;
+      document.getElementById('discount-amount').textContent = discount;
+      document.getElementById('discount-times').textContent = discountTimes;
+    }
+
+    function exportData() {
+      let content = '【甜點銷售紀錄】\n';
+      let total = 0;
+      for (let key in sales) {
+        const item = sales[key];
+        const subtotal = item.count * item.price;
+        content += `${item.name}：${item.count} 個，小計 NT$${subtotal}\n`;
+        total += subtotal;
+      }
+      content += `\n折扣金額：NT$${discount}（共使用 ${discountTimes} 次）`;
+      content += `\n總銷售金額：NT$${Math.max(0, total - discount)}`;
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = '甜點銷售紀錄.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function resetData() {
+      for (let key in sales) {
+        sales[key].count = 0;
+      }
+      discount = 0;
+      discountTimes = 0;
+      saveToStorage();
+      updateUI();
+    }
+
+    loadFromStorage();
+  </script>
+</body>
+</html>
